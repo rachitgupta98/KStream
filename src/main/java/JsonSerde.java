@@ -10,14 +10,17 @@ import java.nio.charset.StandardCharsets;
 
 public class JsonSerde<T> implements Serde<T> {
     public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
-    private final Class<T> type;
+    private Class<T> type;
     private final Gson gson = new GsonBuilder().create();
 
     public JsonSerde(Class<T> type) {
         this.type = type;
     }
+    public JsonSerde() {
 
-    @Override
+    }
+
+        @Override
     public Serializer<T> serializer() {
         return (topic, data) -> serialize(data);
     }
